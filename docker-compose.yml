@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+    genpac:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: genpac-runner
+        restart: unless-stopped
+
+        environment:
+            CRON_SCHEDULE: "0 0 */3 * *"
+
+            # 时区
+            TZ: Asia/Shanghai
+
+            # PAC 配置
+            PAC_PROXY: "SOCKS5 192.168.31.200:7893; DIRECT"
+            PAC_COMPRESS: "true"
+            PAC_PRECISE: "false"
+            GFWLIST_URL: "https://github.mus.pp.ua/https://github.com/gfwlist/gfwlist/raw/master/gfwlist.txt"
+
+            # webhook 可选，不设置则不触发
+            WEBHOOK_SUCCESS_URL: "https://oapi.dingtalk.com/robot/send?access_token=Token"
+            WEBHOOK_SUCCESS_OPTIONS: |
+                {
+                  "msgtype": "markdown",
+                  "markdown": {
+                    "title": "tracker",
+                    "text": "✅ genpac 更新成功 \n 📦 proxy.pac 已生成"
+                  }
+                }
+
+            WEBHOOK_FAILURE_URL: "https://oapi.dingtalk.com/robot/send?access_token=Token"
+            WEBHOOK_FAILURE_OPTIONS: |
+                {
+                  "msgtype": "markdown",
+                  "markdown": {
+                    "title": "tracker",
+                    "text": "❌ genpac 更新失败"
+                  }
+                }
+
+        # 暴露 HTTP 端口
+        ports:
+            - "8080:8080"
+
+        # volumes 可以去掉，如果不需要持久化
+        # volumes:
+        #   - /data/genpac-data:/data
