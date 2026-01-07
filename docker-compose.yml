@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json
 version: "3.9"
 
 services:
@@ -18,12 +19,11 @@ services:
             PAC_PROXY: "SOCKS5 192.168.31.200:7893; DIRECT"
             PAC_COMPRESS: "true"
             PAC_PRECISE: "false"
-            GFWLIST_URL: "https://github.mus.pp.ua/https://github.com/gfwlist/gfwlist/raw/master/gfwlist.txt"
+            # GFWLIST_URL: "https://github.mus.pp.ua/https://github.com/gfwlist/gfwlist/raw/master/gfwlist.txt"
 
-            # 自定义列表
-            PAC_DIRECT_LIST: ""
-            PAC_PROXY_LIST: ""
+            # 自定义列表（只有在未配置GFWLIST_URL时生效）
             PAC_BLOCK_LIST: ""
+            PAC_DIRECT_LIST: ""
 
             # webhook 可选，不设置则不触发
             WEBHOOK_SUCCESS_URL: "https://oapi.dingtalk.com/robot/send?access_token=Token"
