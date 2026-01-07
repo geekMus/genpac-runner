@@ -17,7 +17,9 @@ services:
 
             # PAC 配置
             PAC_PROXY: "SOCKS5 192.168.31.200:7893; DIRECT"
-            PAC_COMPRESS: "true"
+            # 是否压缩
+            PAC_COMPRESS: "false"
+            # 是否精确匹配
             PAC_PRECISE: "false"
             # GFWLIST_URL: "https://github.mus.pp.ua/https://github.com/gfwlist/gfwlist/raw/master/gfwlist.txt"
 
