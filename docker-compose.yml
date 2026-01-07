@@ -20,6 +20,11 @@ services:
             PAC_PRECISE: "false"
             GFWLIST_URL: "https://github.mus.pp.ua/https://github.com/gfwlist/gfwlist/raw/master/gfwlist.txt"
 
+            # 自定义列表
+            PAC_DIRECT_LIST: ""
+            PAC_PROXY_LIST: ""
+            PAC_BLOCK_LIST: ""
+
             # webhook 可选，不设置则不触发
             WEBHOOK_SUCCESS_URL: "https://oapi.dingtalk.com/robot/send?access_token=Token"
             WEBHOOK_SUCCESS_OPTIONS: |
