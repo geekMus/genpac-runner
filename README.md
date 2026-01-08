@@ -32,7 +32,7 @@
 
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
-| `CRON_SCHEDULE` | `*/5 * * * *` | cron 表达式，控制 PAC 更新频率 |
+| `CRON_SCHEDULE` | - | cron 表达式，控制 PAC 更新频率 |
 | `TZ` | `Asia/Shanghai` | 容器时区 |
 | `PAC_PROXY` | `SOCKS5 127.0.0.1:1080; DIRECT` | PAC 代理规则 |
 | `PAC_COMPRESS` | `true` | 是否压缩 PAC 文件 |
@@ -51,6 +51,5 @@
 
 ```bash
 docker-compose build
-
 ```
 
