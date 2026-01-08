@@ -42,6 +42,8 @@
 | `WEBHOOK_SUCCESS_OPTIONS` | - | 成功 webhook JSON 配置，可选 |
 | `WEBHOOK_FAILURE_URL` | - | 失败 webhook URL，可选 |
 | `WEBHOOK_FAILURE_OPTIONS` | - | 失败 webhook JSON 配置，可选 |
+| `PAC_BLOCK_LIST` | [] | 黑名单（以,分割） |
+| `PAC_DIRECT_LIST` | [] | 直连列表 |
 
 ---
 
