@@ -8,6 +8,7 @@ services:
             dockerfile: Dockerfile
         container_name: genpac-runner
         restart: unless-stopped
+        network_mode: bridge
 
         environment:
             CRON_SCHEDULE: "0 0 */3 * *"
