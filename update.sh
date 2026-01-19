@@ -13,6 +13,7 @@
 #   - 不使用 genpac
 #   - 使用用户自定义规则
 #   - 默认走代理
+#   - 内网地址默认直连（RFC1918）
 #
 # --------------------------------------------------
 
@@ -127,17 +128,29 @@ var PAC_PROXY   = "${PAC_PROXY}";
 
 function FindProxyForURL(url, host) {
 
-    // 0️⃣ 黑名单：直接丢弃
+    // 0️⃣ 本地 / 内网地址：永远直连
+    if (
+        host === "localhost" ||
+        host.indexOf('.') === -1 ||
+        isInNet(host, "127.0.0.0", "255.0.0.0") ||
+        isInNet(host, "10.0.0.0", "255.0.0.0") ||
+        isInNet(host, "172.16.0.0", "255.240.0.0") ||
+        isInNet(host, "192.168.0.0", "255.255.0.0")
+    ) {
+        return "DIRECT";
+    }
+
+    // 1️⃣ 黑名单：直接丢弃
     if (BLOCK_LIST.length && isMatch(host, BLOCK_LIST)) {
         return "PROXY 0.0.0.0:0";
     }
 
-    // 1️⃣ 强制直连
+    // 2️⃣ 强制直连
     if (DIRECT_LIST.length && isMatch(host, DIRECT_LIST)) {
         return "DIRECT";
     }
 
-    // 2️⃣ 默认：走代理
+    // 3️⃣ 默认：走代理
     return PAC_PROXY;
 }
 EOF
