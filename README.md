@@ -55,3 +55,6 @@
 docker-compose build
 ```
 
+### 2. 部署并启动
+
+将仓库放到 dpanel 下的 compose 目录，然后直接在面板启动即可
